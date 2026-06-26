@@ -567,22 +567,34 @@ function Index() {
           </p>
 
           <form
+            action="https://api.web3forms.com/submit"
+            method="POST"
             className="mt-12 grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-left"
-            onSubmit={(e) => e.preventDefault()}
-          >
+            >
+          <input
+           type="hidden"
+           name="access_key"
+           value="5d3ab80b-be33-4fc6-a710-95258dae2b85"
+           />
             <input
-              type="text"
-              placeholder="Your name"
+             type="text"
+              name="name"
+               placeholder="Your name"
+               required
               className="bg-white border border-crate/15 rounded-2xl px-5 py-4 font-body placeholder:text-crate/40 focus:outline-none focus:border-spark transition-colors"
             />
             <input
-              type="email"
-              placeholder="Email"
+            type="email"
+             name="email"
+             placeholder="Email"
+             required
               className="bg-white border border-crate/15 rounded-2xl px-5 py-4 font-body placeholder:text-crate/40 focus:outline-none focus:border-spark transition-colors"
             />
             <textarea
-              placeholder="Tell us what you're looking for..."
-              rows={4}
+            name="message"
+            placeholder="Tell us what you're looking for..."
+            rows={4}
+            required
               className="sm:col-span-2 bg-white border border-crate/15 rounded-2xl px-5 py-4 font-body placeholder:text-crate/40 focus:outline-none focus:border-spark transition-colors resize-none"
             />
             <button
