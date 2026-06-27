@@ -17,10 +17,10 @@ import heroStrawberryBoba from "@/assets/hero-strawberry-boba.jpg";
 import heroLitchiBoba from "@/assets/hero-litchi-boba.jpg";
 import sparkCartoon from "@/assets/animation-video.mp4";
 import sparkLogoAsset from "@/assets/spark-logo.png";
-import cartoonClinkAsset from "@/assets/cartoon-kids-clink.jpeg";
+import cartoonClinkAsset from "@/assets/cartoon-kids-clink.png";
 import cartoonRunAsset from "@/assets/cartoon-kids-run.jpg";
 import cartoonSwingAsset from "@/assets/cartoon-kid-swing.jpg";
-import cartoonSparkAsset from "@/assets/cartoon-kids-spark.png";
+import cartoonSparkAsset from "@/assets/cartoon-kids-spark.jpeg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -219,32 +219,43 @@ function Index() {
   return (
     <div className="bg-paper font-body text-[#1a1a1a] selection:bg-spark selection:text-white overflow-x-hidden">
       {/* Nav — transparent (Sting style) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
-          <a href="#top" aria-label="Spark home">
-            <SparkLogo size="xl" />
-          </a>
-          <div className="flex gap-6 sm:gap-12 text-sm sm:text-base font-bold uppercase tracking-[0.25em] text-white">
-            <a
-              href="#flavors"
-              className="hover:text-spark transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
-            >
-              Flavors
-            </a>
-            <a
-              href="#contact"
-              className="hover:text-spark transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
-            >
-              Contact
-            </a>
-          </div>
-        </div>
-      </nav>
+      <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50">
+  <div className="flex items-center justify-between gap-14
+      w-[1320px]
+      h-[92px]
+      px-10
+      rounded-full
+      border border-white/20
+      bg-black/35
+      backdrop-blur-xl
+      shadow-[0_15px_40px_rgba(0,0,0,.35)]">
 
+    <a href="#top">
+      <SparkLogo size="xl" />
+    </a>
+
+    <div className="flex items-center gap-10">
+      <a
+        href="#flavors"
+        className="uppercase text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
+      >
+        Flavours
+      </a>
+
+      <a
+        href="#contact"
+        className="uppercase text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
+      >
+        Contact
+      </a>
+    </div>
+
+  </div>
+</nav>
       {/* Hero — rotating single-bottle cinematic showcase */}
       <section
         id="top"
-        className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-28 pb-16 px-4 bg-gradient-to-br ${current.heroBg} transition-[background] duration-700`}
+        className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-36 pb-16 px-4 bg-gradient-to-br ${current.heroBg} transition-[background] duration-700`}
       >
         {/* Background sparks/bubbles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

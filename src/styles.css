@@ -291,3 +291,7 @@ body {
 * {
   box-sizing: border-box;
 }
+nav div {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
