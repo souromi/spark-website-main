@@ -184,14 +184,40 @@ function SparkLogo({
 
 function Index() {
   const [active, setActive] = useState(0);
+  const [success, setSuccess] = useState(false);
   useEffect(() => {
     const t = setInterval(() => setActive((i) => (i + 1) % flavors.length), 2800);
     return () => clearInterval(t);
   }, []);
   const current = flavors[active];
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const form = e.currentTarget;
+  const formData = new FormData(form);
+
+  const response = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: formData,
+  });
+
+  const result = await response.json();
+
+  if (result.success) {
+  setSuccess(true);
+  form.reset();
+
+  setTimeout(() => {
+    setSuccess(false);
+  }, 3000); // hides after 3 seconds
+}
+   else {
+    alert("Failed to send message.");
+  }
+};
 
   return (
-    <div className="bg-paper font-body text-[#1a1a1a] selection:bg-spark selection:text-white">
+    <div className="bg-paper font-body text-[#1a1a1a] selection:bg-spark selection:text-white overflow-x-hidden">
       {/* Nav — transparent (Sting style) */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
@@ -290,7 +316,7 @@ function Index() {
 
       {/* Marquee */}
       <div className="bg-crate py-4 overflow-hidden border-y border-black/20">
-        <div className="flex whitespace-nowrap animate-[marquee_25s_linear_infinite] w-max">
+        <div className="flex whitespace-nowrap animate-[marquee_25s_linear_infinite] ">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex gap-12 items-center px-6 shrink-0">
               {marqueeItems.map((item) => (
@@ -426,7 +452,7 @@ function Index() {
                 className="w-full h-full object-cover"
               />
               {/* Sparkle burst where the two bottles connect */}
-              <div className="absolute top-[14%] left-1/2 -translate-x-1/2 pointer-events-none">
+              <div className="absolute top-[14%] left-1/2 -translate-x-1/2 pointer-events-none overflow-hidden">
                 <div className="relative w-16 h-16">
                   <div className="absolute inset-0 rounded-full bg-spark/60 blur-md animate-[sparkle-burst_1.5s_ease-in-out_infinite]" />
                   <div className="absolute inset-2 rounded-full bg-white/80 blur-sm animate-[sparkle-burst_1.5s_ease-in-out_infinite_0.1s]" />
@@ -567,15 +593,16 @@ function Index() {
           </p>
 
           <form
-            action="https://api.web3forms.com/submit"
-            method="POST"
-            className="mt-12 grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-left"
-            >
+           onSubmit={handleSubmit}
+           className="mt-12 grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-left"
+           >
+            
           <input
            type="hidden"
            name="access_key"
            value="5d3ab80b-be33-4fc6-a710-95258dae2b85"
            />
+           
             <input
              type="text"
               name="name"
@@ -604,6 +631,11 @@ function Index() {
               Send the Spark →
             </button>
           </form>
+          {success && (
+  <p className="mt-4 text-green-600 font-bold">
+    ✅ Thank you! Your message has been sent.
+  </p>
+)}
         </div>
       </section>
 

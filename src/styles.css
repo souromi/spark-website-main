@@ -282,3 +282,12 @@ html {
     color: var(--color-foreground);
   }
 }
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
