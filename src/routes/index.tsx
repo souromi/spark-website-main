@@ -219,37 +219,39 @@ function Index() {
   return (
     <div className="bg-paper font-body text-[#1a1a1a] selection:bg-spark selection:text-white overflow-x-hidden">
       {/* Nav — transparent (Sting style) */}
-      <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50">
-  <div className="flex items-center justify-between gap-14
-      w-[1320px]
-      h-[92px]
-      px-10
+      <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full flex justify-center px-4">
+  <div
+    className="
+      flex items-center justify-between
+      w-full max-w-5xl
+      h-16 sm:h-20
+      px-5 sm:px-10
       rounded-full
       border border-white/20
       bg-black/35
       backdrop-blur-xl
-      shadow-[0_15px_40px_rgba(0,0,0,.35)]">
-
+      shadow-[0_15px_40px_rgba(0,0,0,.35)]
+    "
+  >
     <a href="#top">
       <SparkLogo size="xl" />
     </a>
 
-    <div className="flex items-center gap-10">
+    <div className="flex items-center gap-5 sm:gap-10">
       <a
-        href="#flavors"
-        className="uppercase text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
+        href="#flavours"
+        className="uppercase text-xs sm:text-base text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
       >
         Flavours
       </a>
 
       <a
         href="#contact"
-        className="uppercase text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
+        className="uppercase text-xs sm:text-base text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
       >
         Contact
       </a>
     </div>
-
   </div>
 </nav>
       {/* Hero — rotating single-bottle cinematic showcase */}
