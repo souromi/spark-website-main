@@ -184,6 +184,7 @@ function SparkLogo({
 
 function Index() {
   const [active, setActive] = useState(0);
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
   const [success, setSuccess] = useState(false);
   useEffect(() => {
     const t = setInterval(() => setActive((i) => (i + 1) % flavors.length), 2800);
@@ -239,12 +240,12 @@ function Index() {
 
     <div className="flex items-center gap-5 sm:gap-10">
       <a
-        href="#flavours"
-        className="uppercase text-xs sm:text-base text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
-      >
-        Flavours
-      </a>
-
+       href="#flavours"
+       onClick={() => console.log("Flavours clicked")}
+       className="uppercase text-xs sm:text-base text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
+       >
+         Flavours
+         </a>
       <a
         href="#contact"
         className="uppercase text-xs sm:text-base text-white font-semibold tracking-[2px] hover:text-orange-400 transition"
@@ -318,7 +319,7 @@ function Index() {
               {current.desc}
             </p>
             <a
-              href="#flavors"
+              href="#flavours"
               className="inline-block mt-8 px-10 py-4 bg-spark text-white font-display text-lg sm:text-xl rounded-full hover:scale-105 transition-transform shadow-lg shadow-spark/40"
             >
               Experience the Fizz
@@ -346,7 +347,9 @@ function Index() {
       </div>
 
       {/* Flavors */}
-      <section id="flavors" className="py-20 sm:py-28 px-4 sm:px-8">
+      <section id="flavours"
+      className="scroll-mt-28 py-20 sm:py-28 px-4 sm:px-8"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 sm:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
@@ -366,9 +369,12 @@ function Index() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {flavors.map((f, i) => (
               <article
-                key={f.name}
-                className={`group relative ${f.bg} ${f.hoverBg} rounded-[2rem] p-6 sm:p-8 overflow-hidden flex flex-col h-[540px] border border-black/5 transition-colors duration-500`}
-              >
+              key={f.name}
+               onClick={() => setSelectedCard(i)} 
+               className={`group relative ${
+                selectedCard === i ? f.hoverBg.replace("hover:", "") : f.bg
+                 } ${f.hoverBg} rounded-[2rem] p-6 sm:p-8 overflow-hidden flex flex-col h-[540px] border border-black/5 transition-colors duration-500 cursor-pointer`}
+                 >
                 <div className="relative z-10 flex flex-col h-full">
                   <div>
                     <span
